@@ -55,7 +55,8 @@ portafolioGlo/
 ├── index.html          # Página principal
 ├── styles.css          # Estilos CSS
 ├── script.js           # JavaScript funcional
-└── README.md          # Documentación
+├── README.md          # Documentación
+└── EMAILJS_SETUP.md   # Instrucciones para configurar EmailJS
 ```
 
 ## 🚀 Instalación y Uso
@@ -105,9 +106,11 @@ portafolioGlo/
 ## 🔧 Características Avanzadas
 
 ### Formulario de Contacto
+- Integración con EmailJS para envío real de emails
 - Validación en tiempo real
 - Mensajes de éxito/error
 - Protección contra spam básica
+- Configuración fácil (ver `EMAILJS_SETUP.md`)
 
 ### Animaciones
 - Scroll animations con Intersection Observer
@@ -123,7 +126,7 @@ portafolioGlo/
 ## 🚀 Próximas Mejoras
 
 - [ ] Agregar modo oscuro/claro
-- [ ] Integrar backend para formulario de contacto
+- [x] ✅ **Integrar EmailJS para formulario de contacto** 
 - [ ] Agregar blog personal
 - [ ] Implementar PWA (Progressive Web App)
 - [ ] Añadir más animaciones interactivas

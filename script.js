@@ -1,5 +1,28 @@
 // Navegación móvil
 document.addEventListener('DOMContentLoaded', function() {
+    // ==========================================
+    // 📧 CONFIGURACIÓN DE EMAILJS
+    // ==========================================
+    // INSTRUCCIONES PARA CONFIGURAR:
+    // 1. Ve a https://www.emailjs.com/ y crea una cuenta
+    // 2. Crea un servicio de email (Gmail, Outlook, etc.)
+    // 3. Crea un template con estas variables: {{from_name}}, {{from_email}}, {{subject}}, {{message}}
+    // 4. Reemplaza las siguientes credenciales con las tuyas:
+    
+    const EMAILJS_CONFIG = {
+        PUBLIC_KEY: 'TU_PUBLIC_KEY_AQUI',     // Tu Public Key de EmailJS
+        SERVICE_ID: 'TU_SERVICE_ID_AQUI',     // Tu Service ID
+        TEMPLATE_ID: 'TU_TEMPLATE_ID_AQUI'    // Tu Template ID
+    };
+    
+    // Inicializar EmailJS
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    }
+    
+    // ==========================================
+    // 🧭 NAVEGACIÓN Y UI
+    // ==========================================
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -111,7 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
         count();
     }
 
-    // Formulario de contacto
+    // ==========================================
+    // 📧 FORMULARIO DE CONTACTO CON EMAILJS
+    // ==========================================
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -135,9 +160,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulación de envío (aquí integrarías con tu backend)
+            // Verificar que EmailJS esté configurado
+            if (!EMAILJS_CONFIG.PUBLIC_KEY.includes('TU_') && typeof emailjs !== 'undefined') {
+                // Enviar email real con EmailJS
+                sendEmailWithEmailJS(name, email, subject, message, this);
+            } else {
+                // Modo de prueba (cuando no está configurado EmailJS)
+                showNotification('⚠️ EmailJS no está configurado. El mensaje no se envió realmente.', 'warning');
+                showNotification('Revisa las instrucciones en script.js para configurar EmailJS.', 'info');
+                this.reset();
+            }
+        });
+    }
+
+    // Función para enviar email con EmailJS
+    function sendEmailWithEmailJS(name, email, subject, message, form) {
+        // Mostrar estado de envío
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+
+        // Parámetros para el template de EmailJS
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+            to_email: 'glo.suacas@gmail.com' // Tu email donde recibirás los mensajes
+        };
+
+        // Enviar email
+        emailjs.send(
+            EMAILJS_CONFIG.SERVICE_ID,
+            EMAILJS_CONFIG.TEMPLATE_ID,
+            templateParams
+        ).then(function(response) {
+            console.log('✅ Email enviado exitosamente:', response);
             showNotification('¡Mensaje enviado con éxito! Te contactaré pronto.', 'success');
-            this.reset();
+            form.reset();
+        }).catch(function(error) {
+            console.error('❌ Error al enviar email:', error);
+            showNotification('Error al enviar el mensaje. Por favor, intenta de nuevo.', 'error');
+        }).finally(function() {
+            // Restaurar botón
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         });
     }
 
@@ -147,24 +215,42 @@ document.addEventListener('DOMContentLoaded', function() {
         return emailRegex.test(email);
     }
 
-    // Sistema de notificaciones
+    // Sistema de notificaciones mejorado
     function showNotification(message, type = 'info') {
         // Crear elemento de notificación
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
+        
+        // Iconos según el tipo
+        const icons = {
+            success: '✅',
+            error: '❌',
+            warning: '⚠️',
+            info: 'ℹ️'
+        };
+        
         notification.innerHTML = `
             <div class="notification-content">
+                <span class="notification-icon">${icons[type] || icons.info}</span>
                 <span class="notification-message">${message}</span>
                 <button class="notification-close">&times;</button>
             </div>
         `;
+
+        // Colores según el tipo
+        const colors = {
+            success: '#10b981',
+            error: '#ef4444',
+            warning: '#f59e0b',
+            info: '#3b82f6'
+        };
 
         // Estilos de la notificación
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+            background: ${colors[type] || colors.info};
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 8px;
@@ -173,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: translateX(100%);
             transition: transform 0.3s ease;
             max-width: 400px;
+            font-family: 'Poppins', sans-serif;
         `;
 
         document.body.appendChild(notification);
