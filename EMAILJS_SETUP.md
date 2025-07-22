@@ -21,18 +21,20 @@
 ### 3. Crear Template de Email
 1. Ve a "Email Templates"
 2. Haz clic en "Create New Template"
-3. Usa este template HTML:
+3. **Usa este template simple y efectivo:**
 
+**Subject:** Nuevo mensaje de {{name}} - {{subject}}
+
+**Body (HTML):**
 ```html
-Asunto: Nuevo mensaje de {{from_name}} - {{subject}}
-
 Hola Gloriela,
 
 Has recibido un nuevo mensaje desde tu portafolio web:
 
-Nombre: {{from_name}}
+Nombre: {{name}}
 Email: {{from_email}}
 Asunto: {{subject}}
+Fecha: {{time}}
 
 Mensaje:
 {{message}}
@@ -104,10 +106,11 @@ const EMAILJS_CONFIG = {
 ## 📝 Variables del Template
 
 Asegúrate de que tu template incluya estas variables:
-- `{{from_name}}` - Nombre del remitente
+- `{{name}}` - Nombre del remitente (actualizado)
 - `{{from_email}}` - Email del remitente  
 - `{{subject}}` - Asunto del mensaje
 - `{{message}}` - Contenido del mensaje
+- `{{time}}` - Fecha y hora del mensaje (generado automáticamente)
 
 ## 🎉 ¡Listo!
 

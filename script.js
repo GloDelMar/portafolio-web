@@ -181,14 +181,28 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Enviando...';
         submitBtn.disabled = true;
 
-        // Parámetros para el template de EmailJS
+        // Generar fecha y hora actual en formato bonito
+        const now = new Date();
+        const timeFormatted = now.toLocaleDateString('es-MX', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        // Parámetros para el template de EmailJS (formato simple)
         const templateParams = {
-            from_name: name,
+            name: name,
             from_email: email,
             subject: subject,
             message: message,
-            to_email: 'glo.suacas@gmail.com' // Tu email donde recibirás los mensajes
+            time: timeFormatted,
+            to_email: 'glo.suacas@gmail.com'            // Tu email donde recibirás los mensajes
         };
+
+        console.log('📧 Enviando email con parámetros:', templateParams);
 
         // Enviar email
         emailjs.send(
