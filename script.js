@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // INSTRUCCIONES PARA CONFIGURAR:
     // 1. Ve a https://www.emailjs.com/ y crea una cuenta
     // 2. Crea un servicio de email (Gmail, Outlook, etc.)
-    // 3. Crea un template con estas variables: {{from_name}}, {{from_email}}, {{subject}}, {{message}}
+    // 3. Crea un template con estas variables: {{name}}, {{from_email}}, {{subject}}, {{message}}, {{time}}
     // 4. Reemplaza las siguientes credenciales con las tuyas:
     
     const EMAILJS_CONFIG = {

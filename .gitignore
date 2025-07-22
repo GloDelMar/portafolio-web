@@ -1,0 +1,27 @@
+# Archivos de configuración local (con credenciales)
+emailjs-config-local.md
+config-local.js
+
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencias (si usas npm/node)
+node_modules/
+
+# Archivos temporales
+*.tmp
+*.temp
