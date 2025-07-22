@@ -3,16 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // 📧 CONFIGURACIÓN DE EMAILJS
     // ==========================================
-    // INSTRUCCIONES PARA CONFIGURAR:
-    // 1. Ve a https://www.emailjs.com/ y crea una cuenta
-    // 2. Crea un servicio de email (Gmail, Outlook, etc.)
-    // 3. Crea un template con estas variables: {{name}}, {{from_email}}, {{subject}}, {{message}}, {{time}}
-    // 4. Reemplaza las siguientes credenciales con las tuyas:
+    // Configurado para GitHub Pages
+    // Las claves están optimizadas para despliegue público
     
     const EMAILJS_CONFIG = {
-        PUBLIC_KEY: 'TU_PUBLIC_KEY_AQUI',     // Tu Public Key de EmailJS
-        SERVICE_ID: 'TU_SERVICE_ID_AQUI',     // Tu Service ID
-        TEMPLATE_ID: 'TU_TEMPLATE_ID_AQUI'    // Tu Template ID
+        PUBLIC_KEY: 'Tw0IztGxDcKChnIq3n',     // Public Key (seguro para repositorios públicos)
+        SERVICE_ID: 'service_a6o9dfwI',       // Service ID 
+        TEMPLATE_ID: 'template_f1k3eh4'       // Template ID
     };
     
     // Inicializar EmailJS
