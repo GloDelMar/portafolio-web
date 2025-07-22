@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Las claves están optimizadas para despliegue público
     
     const EMAILJS_CONFIG = {
-        PUBLIC_KEY: 'Tw0IztGxDcKChnIq3n',     // Public Key (seguro para repositorios públicos)
+        PUBLIC_KEY: 'UZTWYqJA-j2_3-OMO',     // Public Key (seguro para repositorios públicos)
         SERVICE_ID: 'service_a6o9dfw',        // Service ID 
         TEMPLATE_ID: 'template_f1k3eh4'       // Template ID
     };
