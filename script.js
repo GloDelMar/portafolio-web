@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const EMAILJS_CONFIG = {
         PUBLIC_KEY: 'Tw0IztGxDcKChnIq3n',     // Public Key (seguro para repositorios públicos)
-        SERVICE_ID: 'service_a6o9dfwI',       // Service ID 
+        SERVICE_ID: 'service_a6o9dfw',        // Service ID 
         TEMPLATE_ID: 'template_f1k3eh4'       // Template ID
     };
     
